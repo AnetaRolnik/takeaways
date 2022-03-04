@@ -1,0 +1,24 @@
+.form-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.form-control__label {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.form-control__input {
+  border-radius: 5px;
+  border: 1px solid #f1ddd0;
+  font: inherit;
+  padding: 6px 12px;
+  transition: border-color 0.2s;
+}
+
+.form-control__input:hover,
+.form-control__input:focus {
+  border-color: #d4966d;
+  outline: none;
+}
