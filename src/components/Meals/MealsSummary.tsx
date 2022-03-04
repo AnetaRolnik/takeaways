@@ -1,8 +1,10 @@
 import classes from "./MealsSummary.module.css";
 
+import Card from "../UI/Card";
+
 const MealsSummary = () => {
   return (
-    <section className={classes.summary}>
+    <Card className={classes.summary}>
       <h2 className={classes["summary__header"]}>
         Delicious food, delivered to You
       </h2>
@@ -14,7 +16,7 @@ const MealsSummary = () => {
         All our meals are cooked with high-quality ingredients, just-in-time and
         of course by experienced chefs!
       </p>
-    </section>
+    </Card>
   );
 };
 

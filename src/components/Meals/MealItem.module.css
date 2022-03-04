@@ -1,0 +1,40 @@
+.meal {
+  margin: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1ddd0;
+}
+
+.meal__header {
+  margin: 0 0 8px;
+}
+
+.meal__description {
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.meal__price {
+  font-weight: bold;
+  color: #bd6c38;
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .meal {
+    display: flex;
+    align-items: center;
+  }
+
+  .meal__header {
+    margin-right: 8px;
+    margin-bottom: 0;
+  }
+
+  .meal__description {
+    margin-bottom: 0;
+  }
+
+  .meal__price {
+    margin-left: auto;
+  }
+}

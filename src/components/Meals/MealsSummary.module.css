@@ -1,15 +1,9 @@
 .summary {
   text-align: center;
-  width: 600px;
-  max-width: 90%;
-  margin: auto;
   margin-top: -100px;
   position: relative;
   background-color: #d4966d;
   color: #fff;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 1px 8px 4px rgba(0, 0, 0, 0.1);
   line-height: 1.3;
 }
 
@@ -19,10 +13,6 @@
 }
 
 @media (min-width: 768px) {
-  .summary {
-    padding: 24px;
-  }
-
   .summary__header {
     font-size: 32px;
   }

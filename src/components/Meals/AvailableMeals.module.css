@@ -1,7 +1,7 @@
 .meals {
-  max-width: 60rem;
-  width: 90%;
-  margin: 2rem auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background-color: #fdf9f7;
   animation: meals-appear 1s ease-out forwards;
 }
 
