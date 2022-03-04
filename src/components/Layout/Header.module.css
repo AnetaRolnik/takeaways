@@ -21,6 +21,31 @@
   font-weight: 700;
 }
 
+.header__button {
+  cursor: pointer;
+  border: none;
+  background-color: #a96132;
+  color: white;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.header__icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.header__badge {
+  background-color: #da7534;
+  padding: 4px 12px;
+  border-radius: 25px;
+  margin-left: 8px;
+}
+
 @media (min-width: 768px) {
   .header {
     height: 80px;
@@ -29,5 +54,25 @@
 
   .header__logo {
     font-size: 32px;
+  }
+
+  .header__button {
+    padding: 12px 48px;
+    font: inherit;
+    transition: background-color 0.2s;
+  }
+
+  .header__button:hover,
+  .header__button:active {
+    background-color: #95552c;
+  }
+
+  .header__icon {
+    margin-right: 8px;
+  }
+
+  .header__badge {
+    margin-left: 16px;
+    padding: 4px 16px;
   }
 }
