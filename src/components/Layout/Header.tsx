@@ -1,9 +1,14 @@
+import React from "react";
 import classes from "./Header.module.css";
 
-const Header = () => (
+const Header: React.FC<{ onShowCart: any }> = (props) => (
   <header className={classes.header}>
     <div className={classes["header__logo"]}>Takeaways</div>
-    <button type="button" className={classes["header__button"]}>
+    <button
+      type="button"
+      className={classes["header__button"]}
+      onClick={props.onShowCart}
+    >
       <span className={classes["header__icon"]}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
