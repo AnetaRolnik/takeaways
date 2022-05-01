@@ -2,6 +2,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: auto;
+  max-height: calc(100vh - 180px);
+  overflow: auto;
 }
 
 .total {
@@ -51,4 +54,10 @@
 .button--secondary:hover,
 .button--secondary:active {
   color: #8a2b06;
+}
+
+@media (min-width: 768px) {
+  .cart-items {
+    max-height: calc(100vh - 240px);
+  }
 }

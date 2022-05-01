@@ -3,18 +3,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal {
   position: fixed;
-  top: 20vh;
+  top: 0;
   left: 5%;
   width: 90%;
   background-color: #fff;
   padding: 16px;
+  margin: 24px 0;
   box-shadow: 0 1px 8px 4px rgba(0, 0, 0, 0.1);
   border-radius: 14px;
   z-index: 30;
@@ -26,6 +27,7 @@
     width: 40rem;
     left: calc(50% - 20rem);
     padding: 24px;
+    margin: 40px 0;
   }
 }
 
