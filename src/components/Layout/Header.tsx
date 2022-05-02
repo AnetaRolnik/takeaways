@@ -1,26 +1,44 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import CartContext from "../../store/cart-context";
 import classes from "./Header.module.css";
 
 const Header: React.FC<{ onShowCart: any }> = (props) => {
-  const cartCtx = useContext(CartContext);
+  const [btnIsAnimated, setBtnIsAnimated] = useState(false);
 
-  const numberOfCartItems = cartCtx.items.reduce(
+  const cartCtx = useContext(CartContext);
+  const { items } = cartCtx;
+
+  const numberOfCartItems = items.reduce(
     (current, item: { amount: number }) => {
       return current + item.amount;
     },
     0
   );
 
+  useEffect(() => {
+    if (items.length === 0) {
+      return;
+    }
+    setBtnIsAnimated(true);
+
+    const timer = setTimeout(() => {
+      setBtnIsAnimated(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
+
+  const btnClasses = `${classes["header__button"]} ${
+    btnIsAnimated ? classes.bump : ""
+  }`;
+
   return (
     <header className={classes.header}>
       <div className={classes["header__logo"]}>Takeaways</div>
-      <button
-        type="button"
-        className={classes["header__button"]}
-        onClick={props.onShowCart}
-      >
+      <button type="button" className={btnClasses} onClick={props.onShowCart}>
         <span className={classes["header__icon"]}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
