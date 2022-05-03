@@ -1,0 +1,17 @@
+.alert {
+  margin: 32px auto;
+  text-align: center;
+  font-size: 16px;
+}
+
+.info {
+  background-color: #fdf9f7;
+}
+
+.warning {
+  background-color: #ffff99;
+}
+
+.danger {
+  background-color: #ffb3b3;
+}
