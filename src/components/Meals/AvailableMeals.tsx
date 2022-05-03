@@ -4,6 +4,7 @@ import classes from "./AvailableMeals.module.css";
 
 import MealItem from "./MealItem/MealItem";
 import Card from "../UI/Card";
+import Loader from "../UI/Loader";
 
 type meal = {
   id: string;
@@ -14,6 +15,7 @@ type meal = {
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState<meal[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -33,6 +35,7 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
     fetchMeals();
@@ -48,11 +51,16 @@ const AvailableMeals = () => {
     />
   ));
 
-  return (
-    <Card className={classes.meals}>
-      <ul className={classes["meals__list"]}>{mealsList}</ul>
-    </Card>
-  );
+  if (isLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <Card className={classes.meals}>
+        {isLoading && <p>Loading...</p>}
+        <ul className={classes["meals__list"]}>{mealsList}</ul>
+      </Card>
+    );
+  }
 };
 
 export default AvailableMeals;
