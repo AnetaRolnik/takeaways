@@ -44,6 +44,19 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     setIsCheckout(true);
   };
 
+  const submitOrderHandler = (userData: {
+    name: string;
+    street: string;
+    postalCode: string;
+    city: string;
+  }) => {
+    fetch("https://takeaways-1d79e-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user: userData, order: cartCtx.items }),
+    });
+  };
+
   const modalActions = (
     <div className={classes.actions}>
       <button
@@ -70,7 +83,9 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
         <span>Total Amount</span>
         <span>{cartCtx.totalAmount.toFixed(2)}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onHideCart} />}
+      {isCheckout && (
+        <Checkout onCancel={props.onHideCart} onSubmit={submitOrderHandler} />
+      )}
       {!isCheckout && modalActions}
     </Modal>
   );

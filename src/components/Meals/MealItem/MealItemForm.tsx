@@ -41,6 +41,7 @@ const MealItemForm: React.FC<{
           max: "5",
           defaultValue: "1",
         }}
+        isValid={true}
       />
       <button className={classes["form__button"]} type="submit">
         Add

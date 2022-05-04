@@ -20,3 +20,13 @@
   border-color: #d4966d;
   outline: none;
 }
+
+.form-control--invalid .form-control__input {
+  border-color: red;
+}
+
+.form-control__error-text {
+  color: red;
+  margin: 4px 0;
+  font-size: 12px;
+}
