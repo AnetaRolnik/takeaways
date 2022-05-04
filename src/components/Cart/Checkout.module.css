@@ -8,6 +8,7 @@
 
 .actions {
   text-align: right;
+  margin-top: 24px;
 }
 
 .button {
@@ -44,10 +45,4 @@
 .button--secondary:hover,
 .button--secondary:active {
   color: #8a2b06;
-}
-
-@media (min-width: 768px) {
-  .form input {
-    width: 360px;
-  }
 }

@@ -5,9 +5,11 @@ import Modal from "../UI/Modal";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
+import Alert from "../UI/Alert";
 
 const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+  const [httpError, setHttpError] = useState(null);
   const cartCtx = useContext(CartContext);
 
   const hasItems = cartCtx.items.length > 0;
@@ -54,6 +56,8 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user: userData, order: cartCtx.items }),
+    }).catch((error: any) => {
+      setHttpError(error.message);
     });
   };
 
@@ -86,6 +90,7 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
       {isCheckout && (
         <Checkout onCancel={props.onHideCart} onSubmit={submitOrderHandler} />
       )}
+      {httpError && <Alert type="danger">{httpError}</Alert>}
       {!isCheckout && modalActions}
     </Modal>
   );
