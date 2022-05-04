@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
+import Checkout from "./Checkout";
 
 const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
+  const [isCheckout, setIsCheckout] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const hasItems = cartCtx.items.length > 0;
@@ -38,6 +40,29 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     </ul>
   );
 
+  const orderHandler = () => {
+    setIsCheckout(true);
+  };
+
+  const modalActions = (
+    <div className={classes.actions}>
+      <button
+        className={`${classes.button} ${classes["button--secondary"]}`}
+        onClick={props.onHideCart}
+      >
+        Close
+      </button>
+      {hasItems && (
+        <button
+          className={`${classes.button} ${classes["button--primary"]}`}
+          onClick={orderHandler}
+        >
+          Order
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <Modal onClose={props.onHideCart}>
       {cartItems}
@@ -45,19 +70,8 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
         <span>Total Amount</span>
         <span>{cartCtx.totalAmount.toFixed(2)}</span>
       </div>
-      <div className={classes.actions}>
-        <button
-          className={`${classes.button} ${classes["button--secondary"]}`}
-          onClick={props.onHideCart}
-        >
-          Close
-        </button>
-        {hasItems && (
-          <button className={`${classes.button} ${classes["button--primary"]}`}>
-            Order
-          </button>
-        )}
-      </div>
+      {isCheckout && <Checkout onCancel={props.onHideCart} />}
+      {!isCheckout && modalActions}
     </Modal>
   );
 };

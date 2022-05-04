@@ -12,7 +12,7 @@ const CartItem: React.FC<{
   return (
     <li className={classes["cart-item"]}>
       <div>
-        <h2>{props.name}</h2>
+        <h3>{props.name}</h3>
         <div className={classes.summary}>
           <span className={classes.price}>{price}</span>
           <span className={classes.amount}>x {props.amount}</span>

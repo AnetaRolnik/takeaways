@@ -4,7 +4,7 @@ import classes from "./Input.module.css";
 type InputProps = {
   label?: string;
   type?: string;
-  input: { id: string; min: string; max: string; defaultValue: string };
+  input: { id: string; min?: string; max?: string; defaultValue?: string };
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

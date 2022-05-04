@@ -10,7 +10,7 @@ const Backdrop: React.FC<{ onClose: () => void }> = (props) => {
 const ModalOverlay: React.FC = (props) => {
   return (
     <div className={classes.modal}>
-      <div>{props.children}</div>
+      <div className={classes["modal__content"]}>{props.children}</div>
     </div>
   );
 };
