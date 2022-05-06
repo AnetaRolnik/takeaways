@@ -15,6 +15,7 @@ const CartContext = React.createContext<{
     price: number;
   }) => void;
   removeItem: (id: string) => void;
+  clearCart: () => void;
 }>({
   items: [],
   totalAmount: 0,
@@ -25,6 +26,7 @@ const CartContext = React.createContext<{
     price: number;
   }) => {},
   removeItem: (id: string) => {},
+  clearCart: () => {},
 });
 
 export default CartContext;

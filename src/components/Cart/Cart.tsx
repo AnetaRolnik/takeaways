@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
@@ -6,10 +6,13 @@ import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import Alert from "../UI/Alert";
+import Loader from "../UI/Loader";
 
 const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [httpError, setHttpError] = useState(null);
+  const [isSendingForm, setIsSendingForm] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const hasItems = cartCtx.items.length > 0;
@@ -24,6 +27,9 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     amount: number;
     price: number;
   }) => {
+    if (item.amount === 5) {
+      return;
+    }
     cartCtx.addItem({ ...item, amount: 1 });
   };
 
@@ -46,19 +52,30 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler = (userData: {
+  const submitOrderHandler = async (userData: {
     name: string;
     street: string;
     postalCode: string;
     city: string;
   }) => {
-    fetch("https://takeaways-1d79e-default-rtdb.firebaseio.com/orders.json", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user: userData, order: cartCtx.items }),
-    }).catch((error: any) => {
+    setIsSendingForm(true);
+
+    try {
+      const response = await fetch(
+        "https://takeaways-1d79e-default-rtdb.firebaseio.com/orders.json",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user: userData, order: cartCtx.items }),
+        }
+      );
+      setIsSendingForm(false);
+      setDidSubmit(true);
+      cartCtx.clearCart();
+    } catch (error: any) {
+      setIsSendingForm(false);
       setHttpError(error.message);
-    });
+    }
   };
 
   const modalActions = (
@@ -80,8 +97,8 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     </div>
   );
 
-  return (
-    <Modal onClose={props.onHideCart}>
+  const modalContent = (
+    <Fragment>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
@@ -92,6 +109,28 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
       )}
       {httpError && <Alert type="danger">{httpError}</Alert>}
       {!isCheckout && modalActions}
+    </Fragment>
+  );
+
+  const didSubmitModalContent = (
+    <Fragment>
+      <Alert type="success"> Successfully sent the order!</Alert>
+      <div className={classes.actions}>
+        <button
+          className={`${classes.button} ${classes["button--primary"]}`}
+          onClick={props.onHideCart}
+        >
+          Close
+        </button>
+      </div>
+    </Fragment>
+  );
+
+  return (
+    <Modal onClose={props.onHideCart}>
+      {!isSendingForm && !didSubmit && modalContent}
+      {isSendingForm && <Loader />}
+      {didSubmit && didSubmitModalContent}
     </Modal>
   );
 };

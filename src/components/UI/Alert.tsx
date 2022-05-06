@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Alert: React.FC<{ type: string }> = (props) => {
   const alertClasses = `${classes.alert} ${classes[props.type]}`;
-  return <Card className={alertClasses}>{props.children}</Card>;
+  return <div className={alertClasses}>{props.children}</div>;
 };
 
 export default Alert;

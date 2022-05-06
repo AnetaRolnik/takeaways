@@ -23,6 +23,7 @@
 
 .form-control--invalid .form-control__input {
   border-color: red;
+  background-color: #ffe6e6;
 }
 
 .form-control__error-text {
