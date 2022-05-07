@@ -1,4 +1,5 @@
 import classes from "./CartItem.module.css";
+import Button from "../UI/Button";
 
 const CartItem: React.FC<{
   name: string;
@@ -19,8 +20,12 @@ const CartItem: React.FC<{
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={props.onRemove}>−</button>
-        <button onClick={props.onAdd}>+</button>
+        <Button clickAction={props.onRemove} variant="secondary">
+          -
+        </Button>
+        <Button clickAction={props.onAdd} variant="secondary">
+          +
+        </Button>
       </div>
     </li>
   );

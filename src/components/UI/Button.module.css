@@ -1,0 +1,35 @@
+.btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid #a23307;
+  padding: 6px 24px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-left: 8px;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.btn:hover,
+.btn:active {
+  border-color: #8a2b06;
+}
+
+.btn--primary {
+  background-color: #a23307;
+  color: #fff;
+}
+
+.btn--primary:hover,
+.btn--primary:active {
+  background-color: #8a2b06;
+}
+
+.btn--secondary {
+  background-color: #fff;
+  color: #a23307;
+}
+
+.btn--secondary:hover,
+.btn--secondary:active {
+  color: #8a2b06;
+}

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 import classes from "./Checkout.module.css";
 import Input from "../UI/Input";
+import Button from "../UI/Button";
 
 const Checkout: React.FC<{
   onCancel: () => void;
@@ -105,16 +106,12 @@ const Checkout: React.FC<{
         errorMessage="Please enter a valid city."
       />
       <div className={classes.actions}>
-        <button
-          type="button"
-          onClick={props.onCancel}
-          className={`${classes.button} ${classes["button--secondary"]}`}
-        >
+        <Button clickAction={props.onCancel} variant="secondary">
           Cancel
-        </button>
-        <button className={`${classes.button} ${classes["button--primary"]}`}>
+        </Button>
+        <Button variant="primary" type="submit">
           Confirm
-        </button>
+        </Button>
       </div>
     </form>
   );

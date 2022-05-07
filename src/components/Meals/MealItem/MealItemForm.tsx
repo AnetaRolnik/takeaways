@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 import classes from "./MealItemForm.module.css";
 import Input from "../../UI/Input";
+import Button from "../../UI/Button";
 
 const MealItemForm: React.FC<{
   id: string;
@@ -43,9 +44,9 @@ const MealItemForm: React.FC<{
         }}
         isValid={true}
       />
-      <button className={classes["form__button"]} type="submit">
+      <Button type="submit" variant="primary">
         Add
-      </button>
+      </Button>
       {!amountIsValid && <p>Please enter a valid amount (1-5)</p>}
     </form>
   );

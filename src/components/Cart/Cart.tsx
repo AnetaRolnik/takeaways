@@ -7,6 +7,7 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import Alert from "../UI/Alert";
 import Loader from "../UI/Loader";
+import Button from "../UI/Button";
 
 const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -80,19 +81,13 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button
-        className={`${classes.button} ${classes["button--secondary"]}`}
-        onClick={props.onHideCart}
-      >
+      <Button variant="secondary" clickAction={props.onHideCart}>
         Close
-      </button>
+      </Button>
       {hasItems && (
-        <button
-          className={`${classes.button} ${classes["button--primary"]}`}
-          onClick={orderHandler}
-        >
+        <Button variant="primary" clickAction={orderHandler}>
           Order
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -116,12 +111,9 @@ const Cart: React.FC<{ onHideCart: () => void }> = (props) => {
     <Fragment>
       <Alert type="success"> Successfully sent the order!</Alert>
       <div className={classes.actions}>
-        <button
-          className={`${classes.button} ${classes["button--primary"]}`}
-          onClick={props.onHideCart}
-        >
+        <Button variant="primary" clickAction={props.onHideCart}>
           Close
-        </button>
+        </Button>
       </div>
     </Fragment>
   );
